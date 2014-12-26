@@ -114,7 +114,7 @@ class ClientStorage (Storage):
             packed_oids = read(self.s, n*8)
         return split_oids(packed_oids)
 
-    def pack(self):
+    def pack(self, progress=None):
         write(self.s, 'P')
         status = read(self.s, 1)
         if status != STATUS_OKAY:

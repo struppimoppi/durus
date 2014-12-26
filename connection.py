@@ -307,10 +307,10 @@ class Connection (ConnectionBase):
             else:
                 raise ReadConflictError([read_oid])
 
-    def pack(self):
+    def pack(self, progress=None):
         """Clear any uncommited changes and pack the storage."""
         self.abort()
-        self.storage.pack()
+        self.storage.pack(progress=progress)
 
 class ObjectDictionary (object):
     """

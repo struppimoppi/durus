@@ -163,9 +163,17 @@ class FileStorage (Storage):
             yield "finished %s" % datetime.now()
         return packer()
 
-    def pack(self):
-        for iteration in self.get_packer():
-            pass
+    def pack(self, progress=None):
+        if progress:
+            import time
+            lasttime = time.time()
+            for iteration in self.get_packer():
+                if time.time() - lasttime > 0.1:
+                    progress.pulse()
+                    lasttime = time.time()
+        else:
+            for iteration in self.get_packer():
+                pass
 
     def close(self):
         self.shelf.close()

@@ -62,7 +62,7 @@ class Storage (object):
         """
         return None
 
-    def pack(self):
+    def pack(self, progress=None):
         """If this storage supports it, remove obsolete records."""
         return None
 
